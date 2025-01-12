@@ -1,3 +1,14 @@
+﻿# Script gets current EnrollUserOverride setting from Teams Meeting Policy
+# and compares it to current Teams AI Policy settings.
+# It migrates the current Teams Meeting settings to AI Policies
+#
+# created by Thorsten Pickhan
+# Initial script created on 12.01.2025 (01/12/2025)
+# 20250112 - Initial version
+#
+# Version 1.0
+
+
 # Install the Microsoft Teams PowerShell module if not already installed
 if (-not (Get-Module -ListAvailable -Name "MicrosoftTeams")) {
     Install-Module -Name "MicrosoftTeams" -Force -AllowClobber
