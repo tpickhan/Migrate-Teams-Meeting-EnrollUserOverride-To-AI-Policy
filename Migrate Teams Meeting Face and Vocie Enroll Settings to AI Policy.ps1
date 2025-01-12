@@ -10,33 +10,32 @@
 
 
 # Install the Microsoft Teams PowerShell module if not already installed
-if (-not (Get-Module -ListAvailable -Name "MicrosoftTeams")) {
-    Install-Module -Name "MicrosoftTeams" -Force -AllowClobber
-}
-
+Write-Host "Check Microsoft Teams Module"
 if (-not (Get-InstalledModule -Name "MicrosoftTeams" -MinimumVersion 6.6.0 -ErrorAction SilentlyContinue)) {
-    Write-Host "Please install the latest version of the Microsoft Teams PowerShell module"
-    Write-Host "Stopping script now"
-    Exit
+    try {
+        Install-Module -Name "MicrosoftTeams" -Force -AllowClobber -ErrorAction Stop
+    }
+    catch {
+        Write-Error "Microsoft Teams Module is not installed and could not be installed. Stopping Skript now. Error messsage for module installation: $($_)"
+        Exit
+    }
+
 }
 
 
 # Import the Microsoft Teams module
 Import-Module MicrosoftTeams
 
-
 try {
     $TimeStamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
     Write-Host "$($TimeStamp) - Connecting to Microsoft Teams"
-    Connect-MicrosoftTeams
+    $tmp = Connect-MicrosoftTeams -ErrorAction Stop # Use of variable to suppress output
     $TimeStamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
     Write-Host "$($TimeStamp) - Connected to Microsoft Teams"
 }
 catch {
     $TimeStamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
-    Write-Host "$($TimeStamp) - Error connecting to Microsoft Teams"
-    break
-
+    Write-Error "$($TimeStamp) - Error connecting to Microsoft Teams"
 } 
 
 # Define AI Policy Name and Description
@@ -97,7 +96,7 @@ if ($CurrentAIPolicies.Length -gt 1) {
 
 
 ForEach ($Policy in $CurrentMeetingPolicies) {
-    # Start Global Policy Block
+    #region Global Policy Block
     if (($Policy.Identity -eq "Global")) {
         $TimeStamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
         Write-Host "$($TimeStamp) - Checking the the Global Teams Meeting policy"
@@ -114,7 +113,7 @@ ForEach ($Policy in $CurrentMeetingPolicies) {
                 Write-Host ""
                 if (($CurrentAIPolicy.EnrollFace -eq "Enabled") -Or ($CurrentAIPolicy.EnrollVoice -eq "Enabled")) {
                     $TimeStamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
-                    Write-Host "$($TimeStamp) - VoiceEnrollment or FaceEnrollment is to Enabled"
+                    Write-Host "$($TimeStamp) - VoiceEnrollment or FaceEnrollment is set to Enabled"
                     Write-Host "$($TimeStamp) - To reflect Global Teams Meeting Policy, these settings need to be Disabled" -ForegroundColor Yellow
                     Write-Host "$($TimeStamp) - Should the script update the AI Policy? (y)es/(n)o"
                     $response = Read-Host
@@ -158,12 +157,11 @@ ForEach ($Policy in $CurrentMeetingPolicies) {
             Write-Host "$($TimeStamp) - No further action required for Global Teams AI Policy"
             $GlobalAiPolicyVoiceFaceDisabled = $false
         }
-    # End Block Global Policy
+    #endregion Block Global Policy
     }
 
-    # Start Block for Non-Global Policies
+    #region Block for Non-Global Policies
     else {
-        #exit
         $PolicyName = $Policy.Identity.Split(':')[1]
         $TimeStamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
         Write-Host "$($TimeStamp) - Checking the the Teams Meeting policy"
@@ -264,7 +262,7 @@ ForEach ($Policy in $CurrentMeetingPolicies) {
             continue
         }
     }
-    # End Block for Non-Global Policies
+    #endregion Block for Non-Global Policies
     
 }
 
