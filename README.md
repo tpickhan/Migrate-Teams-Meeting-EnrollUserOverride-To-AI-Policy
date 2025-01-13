@@ -19,6 +19,8 @@ If, according to the Global Teams AI Policy, the use of voice and face enrollmen
 
 If, according to the Global Teams AI Policy, the use of voice and face enrollment is disabled, and there is a Teams Meeting Policy that has enabled EnrollUserOverride, a new Teams AI Policy 'Enable Voice and Face Enrollment' is created and can be assigned to users.
 
+The script will only create a new dedicated user policy if this is required. If the global Teams AI policy allows voice and face registration and there is no Teams Meeting policy that prohibits voice and face registration, the script will not change anything.
+
 ## External Links
 For more information about the policies, you can find them here:
 
