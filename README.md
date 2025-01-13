@@ -1,7 +1,7 @@
 # Migrate Teams Meeting Enroll User To Teams AI Policy
 PowerShell script to identify current Teams Meeting Policy settings aboput EnrollUserOverride and migrate settings to new TeamsAIPolicy
 
-Microsoft has announced that starting from February 2025, there will be a new Teams AI Policy.
+Microsoft [has announced](https://www.microsoft.com/en-US/microsoft-365/roadmap?filters=&searchterms=413708) that starting from February 2025, there will be a new Teams AI Policy.
 With this policy, Teams administrators can control whether the features for recording a voice and face profile for end users are allowed or not.
 The control of this feature of voice and face recognition in Microsoft Teams is not new and can already be set today via a parameter in the Microsoft Teams Meeting Policy.
 
