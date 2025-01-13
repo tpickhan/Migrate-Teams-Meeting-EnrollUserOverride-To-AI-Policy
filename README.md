@@ -16,7 +16,10 @@ If the parameter EnrollUserOverride is disabled in the Global Meeting Policy, th
 User-based Teams Meeting Policies are also checked.
 
 If, according to the Global Teams AI Policy, the use of voice and face enrollment is enabled, and there is a Teams Meeting Policy that has disabled EnrollUserOverride, a new Teams AI Policy 'Disable Voice and Face Enrollment' is created and can be assigned to users.
+
 If, according to the Global Teams AI Policy, the use of voice and face enrollment is disabled, and there is a Teams Meeting Policy that has enabled EnrollUserOverride, a new Teams AI Policy 'Enable Voice and Face Enrollment' is created and can be assigned to users.
+
+## External Links
 For more information about the policies, you can find them here:
 
 [Voice and Face Enrollment in Teams](https://learn.microsoft.com/microsoftteams/rooms/voice-and-face-recognition?WT.mc_id=M365-MVP-5004286)
