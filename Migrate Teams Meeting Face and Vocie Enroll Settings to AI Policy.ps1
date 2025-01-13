@@ -10,7 +10,8 @@
 
 
 # Install the Microsoft Teams PowerShell module if not already installed
-Write-Host "Check Microsoft Teams Module"
+$TimeStamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+Write-Host "$($TimeStamp) - Check Microsoft Teams Module"
 if (-not (Get-InstalledModule -Name "MicrosoftTeams" -MinimumVersion 6.6.0 -ErrorAction SilentlyContinue)) {
     try {
         Install-Module -Name "MicrosoftTeams" -Force -AllowClobber -ErrorAction Stop
