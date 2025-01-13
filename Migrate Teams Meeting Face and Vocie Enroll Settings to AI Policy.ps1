@@ -17,7 +17,8 @@ if (-not (Get-InstalledModule -Name "MicrosoftTeams" -MinimumVersion 6.6.0 -Erro
         Install-Module -Name "MicrosoftTeams" -Force -AllowClobber -ErrorAction Stop
     }
     catch {
-        Write-Error "Microsoft Teams Module is not installed and could not be installed. Stopping Skript now. Error messsage for module installation: $($_)"
+        $TimeStamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+        Write-Error "$($TimeStamp) - Microsoft Teams Module is not installed and could not be installed. Stopping Skript now. Error messsage for module installation: $($_)"
         Exit
     }
 
