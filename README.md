@@ -30,4 +30,4 @@ For more information about the policies, you can find them here:
 
 [Microsoft Teams AI Policy](https://learn.microsoft.com/powershell/module/teams/get-csteamsaipolicy?view=teams-ps&WT.mc_id=M365-MVP-5004286)
 
-[My Blog Post on Practical365] (https://practical365.com/voice-and-face-recognition-in-microsoft-teams/)
+[My Blog Post on Practical365](https://practical365.com/voice-and-face-recognition-in-microsoft-teams/)
